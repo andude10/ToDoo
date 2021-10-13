@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDoo"
+             x:Class="ToDoo.Views.MyTodo">
+    <ContentPage.Resources>
+        <local:IsReadyConverter x:Key="isReadyConverter"/>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add new case"
+                     Clicked="AddCase"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="collectionView"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Label  Text="{Binding Title}" FontSize="Large"
+                                FontFamily="Montserrat Black"
+                                TextDecorations="{Binding IsReady, Converter={StaticResource isReadyConverter}}">
+                        </Label>
+                    </Grid>
+                    <Label Text="{Binding Date}"
+                           TextColor="Silver"
+                           FontSize="Small" 
+                           Grid.Row="1"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

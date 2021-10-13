@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoo.Views.CaseEntryPage"
+             xmlns:local="clr-namespace:ToDoo"
+             Title="Case entry"
+             Disappearing="SaveNote">
+    <ContentPage.Resources>
+        <local:IsReadyConverter x:Key="isReadyConverter"/>
+    </ContentPage.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="520"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Padding="5" Orientation="Vertical">
+            <Entry  Placeholder="Enter title" PlaceholderColor="Silver"
+                    Text="{Binding Title}" FontSize="Large"/>
+
+            <Editor AutoSize="TextChanges"
+                    Placeholder="Enter description" PlaceholderColor="Silver"
+                    Text="{Binding Description}" FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Label Text="Is it ready" FontSize="Medium"></Label>
+                <CheckBox IsChecked="{Binding IsReady}"></CheckBox>
+            </StackLayout>
+        </StackLayout>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Margin="5"
+                    Clicked="SaveNote"/>
+            <Button Text="Delete"
+                    Margin="5"
+                    Clicked="DeleteNote"
+                    Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</ContentPage>
